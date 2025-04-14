@@ -3,13 +3,13 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 
-import "src/Contract.sol";
+import "src/MyCoin.sol";
 
-contract TestContract is Test {
-    Contract c;
+contract MyCoinTest is Test {
+    MyCoin c;
 
     function setUp() public {
-        c = new Contract();
+        c = new MyCoin();
     }
 
     function testBar() public {
@@ -20,4 +20,12 @@ contract TestContract is Test {
         vm.assume(x < type(uint128).max);
         assertEq(x + x, x * 2);
     }
+
+    function testBal() public{
+            c.mint(address(this),50);
+            assertEq(c.balanceOf(address(this)),50, "okkk");
+        }
+
+    
+   
 }
